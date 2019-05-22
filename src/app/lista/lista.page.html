@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>lista</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-card *ngFor="let ListaTudo of Imc;">
+      {{ListaTudo.nome}}
+      {{ListaTudo.imc}}
+      {{ListaTudo.msg}}
+      <br>
+    </ion-card>
+  </div>
+  <ion-button shape="round" color="secondary" expand="full" routerLink="/home" routerDirection="root">Voltar</ion-button>
+</ion-content>
