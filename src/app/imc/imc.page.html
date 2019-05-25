@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Calculado IMC
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">  
+      <ion-text  color="primary">Nome</ion-text>
+      <ion-input type="string" required [(ngModel)]="Nome"></ion-input>  
+      <ion-text color="primary">Peso (KG)</ion-text>
+      <ion-input type="number" required [(ngModel)]="Peso"></ion-input>  
+      <ion-text color="primary">Altura (cm)</ion-text>
+      <ion-input type="number" required [(ngModel)]="Altura"></ion-input>
+      <ion-button shape="round" color="success" expand="full" (click)="calcIMC()" round>Calcula IMC</ion-button>
+      <ion-button shape="round" color="tertiary" expand="full"(click)="gravaIMC()" round>Gravar IMC</ion-button>
+      <ion-button shape="round" color="secondary" expand="full" routerLink="/lista" routerDirection="root">Listar IMC</ion-button>
+      <ion-button shape="round" color="secondary" expand="full" routerLink="/login" routerDirection="login">Listar IMC</ion-button>
+
+    <ion-card *ngIf="Resultado">
+    <ion-card-header>
+    Cálculo IMC  
+  <ion-card-content>
+      <p><strong>{{Nome}}</strong></p>
+    <p>IMC {{Resultado}}</p>
+    <p><strong>{{Mensagem}}</strong></p>
+  </ion-card-content>
+  </ion-card-header>
+  </ion-card>
+  </div>
+</ion-content>
