@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'imc', loadChildren: './imc/imc.module#ImcPageModule' },
   { path: 'lista', loadChildren: './lista/lista.module#ListaPageModule' },
+  { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
 ];
 
 @NgModule({

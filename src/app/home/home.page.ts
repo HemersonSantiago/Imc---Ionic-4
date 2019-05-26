@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ListaPage  } from '../lista/lista.page';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -8,52 +7,39 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'home.page.html',
 })
 export class HomePage {
-  Altura: number;
-  Peso: number;
-  Resultado: number;
-  Mensagem: string;
-  Nome: string;
-  listImc: any = [];
+  Usuario: string;
+  Senha: string;
+  usuarioStorage: any;
+  senhaStorage: any;
 
   constructor(public navCtrl: NavController, private storage: Storage) {
 
   }
-  calcIMC(){
-    if (this.Peso > 0 && this.Altura > 0) {
-      let finalIMC = this.Peso / (this.Altura / 100 * this.Altura / 100);
-      this.Resultado = parseFloat(finalIMC.toFixed(2));
-      this.IMCMensagem();
-    }
-  }
-  private IMCMensagem() {  
-    if (this.Resultado < 18.5){
-      this.Mensagem = "Peso baixo"
-    }
-    if (this.Resultado >= 18.5 && this.Resultado <= 24.99) {
-      this.Mensagem = "Normal"
-    }
-    if (this.Resultado >= 25 && this.Resultado <= 29.99) {
-      this.Mensagem = "Sobrepeso"
-    }
-    if (this.Resultado >= 30) {
-      this.Mensagem = "Obeso"
-    }
-    }
-    gravaIMC(){
-      // this.listImc.push("Nome: "+this.Nome+" "+ "Imc: "+this.Resultado);
-      let dados = {
-        nome: this.Nome,
-        imc: this.Resultado,
-        msg: this.Mensagem
-      }
+  entrar() {
+    this.storage.get('usuario').then((val) => {
+      val.map((val) => {
+        this.usuarioStorage = val.usuario;
+        this.senhaStorage = val.senha;
+      })
+      // this.usuarioStorage = val[0].usuario;
+      // this.senhaStorage = val[0].senha;
+      console.log(this.usuarioStorage);
+      console.log(this.senhaStorage);
+    }).catch((error) => {
+      alert('Não foi possivel buscar os dados');
+    });
 
-      this.listImc.push(dados)
-      this.storage.set('imc', this.listImc);
-			console.log("TCL: HomePage -> gravaIMC -> this.storage", this.storage)
-			console.log("TCL: HomePage -> gravaIMC -> dados", dados)
-    } 
-    gotolist(){
-      this.navCtrl.navigateForward('');
+    // console.log(this.Usuario);
+    // console.log(this.Senha);
+    if((this.Usuario && this.Usuario === this.usuarioStorage) && (this.Senha === this.senhaStorage)) {
+      this.navCtrl.navigateForward('imc');
+    } else {
+
     }
   }
+
+  cadastrar() {
+    this.navCtrl.navigateForward('cadastro');
+  }
+}
 

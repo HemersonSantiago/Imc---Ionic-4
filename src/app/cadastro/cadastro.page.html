@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Login
+      Cadastro
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,6 +16,11 @@
     <ion-input placeholder="******" type="password" [(ngModel)]="Senha" ></ion-input>
   </ion-item>
 
-  <ion-button expand="block" (click)="entrar()">Logar</ion-button>
-  <ion-button expand="block" (click)="cadastrar()" color="secondary">Cadastrar</ion-button>
+  <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
+  <ion-button expand="block" (click)="cadastrar()">Cadastrar</ion-button>
 </ion-content>
+
+<ion-card-content>
+  <p><strong>{{Usuario}}</strong></p>
+<p>IMC {{Senha}}</p>
+</ion-card-content>
